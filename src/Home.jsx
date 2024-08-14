@@ -5,14 +5,6 @@ function Home() {
   const [items, setItems] = useState([])
   const [colorMap, setColorMap] = useState(new Map())
 
-  //   const buildMap = (keys, values) => {
-  //     const map = new Map()
-  //     for (let i = 0; i < keys.length; i++) {
-  //       map.set(keys[i], values[i])
-  //     }
-  //     return map
-  //   }
-
   const buildColorMap = async () => {
     const response = await fetch('https://dummyjson.com/recipes/tags')
     const tagArray = await response.json()
@@ -23,16 +15,13 @@ function Home() {
     for (let i = 0; i < tagArray.length; i++) {
       newMap.set(tagArray[i], colorArray[i])
     }
-
     setColorMap(newMap)
-    console.log(colorMap)
   }
 
   const fetchItems = async (url) => {
     const response = await fetch(url)
     const data = await response.json()
     setItems(data.recipes)
-    // console.log(data.recipes)
   }
 
   useEffect(() => {
