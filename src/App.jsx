@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import { Header } from './Header'
 import Home from './Home'
 import RecipePage from './RecipePage'
+import InfiniteScrollExample3 from './InfiniteScrollExample3'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='home' element={<Home />} />
           <Route path='recipe/:id' element={<RecipePage />} />
+          <Route path='/2' element={<InfiniteScrollExample3 />} />
         </Routes>
       </main>
     </>
