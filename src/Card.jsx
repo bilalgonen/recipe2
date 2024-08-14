@@ -14,11 +14,11 @@ export default function Card({ item, colorMap }) {
         </p>
       </Link>
       <div className='flex flex-col justify-between p-1 gap-y-0'>
-        <div className='flex flex-row items-left gap-1 list-disc list-inside'>
+        <div className='flex flex-row items-left gap-1 list-disc list-inside flex-wrap'>
           {item.tags.map((tag, index) => (
             <span
               key={index}
-              className='text-xs border rounded-sm px-1 text-white'
+              className='text-xs border rounded-sm px-1 text-white whitespace-nowrap'
               style={{
                 backgroundColor: colorMap.has(tag)
                   ? colorMap.get(tag)
