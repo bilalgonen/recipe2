@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function Card({ item }) {
   return (
-    <div className='w-[240px] mx-auto bg-white rounded-lg text-gray-800 border-black'>
+    <div className='w-[300px] mx-auto bg-white rounded-lg text-gray-800 border-black'>
       <div>
         <img
           src={item.image}
