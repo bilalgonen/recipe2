@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export const Header = () => {
   return (
     <header className='sticky top-0 z-30 m-0 bg-sky-900'>
-      <nav className='relative flex items-center justify-between px-1 lg:px-8 py-2 mx-auto max-w-full lg:max-w-screen-xl'>
+      <nav className='relative flex items-center justify-between px-1 md:px-8 py-2 mx-auto max-w-full lg:max-w-screen-xl'>
         <Link
           to='/'
           aria-label='Brand'
@@ -17,6 +17,13 @@ export const Header = () => {
             </span>
           </div>
         </Link>
+        <a
+          className='text-white'
+          href='https://github.com/bilalgonen/recipe2'
+          target='_blank'
+        >
+          Go to Github Repo
+        </a>
       </nav>
     </header>
   )

@@ -25,6 +25,10 @@
   h3 {
     @apply text-lg my-2 font-medium;
   }
+  a {
+    @apply hover:underline;
+  }
+
   /* p {
     @apply text-base inline;
   } */

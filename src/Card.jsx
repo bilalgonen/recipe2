@@ -11,11 +11,11 @@ export default function Card({ item }) {
         />
       </div>
       <div className='flex flex-col justify-between p-1 gap-y-0'>
-        <a href={`/recipe/${item.id}`}>
+        <Link to={`/recipe/${item.id}`}>
           <p className='text-lg py-3 font-merriweather1 hover:text-red-600 transition duration-300 '>
             {item.name}
           </p>
-        </a>
+        </Link>
         <div className='text-red-900 font-semibold text-sm'>Instructions</div>
         <ul className='flex flex-col items-left gap-2 list-disc list-inside'>
           {item.instructions.map((instruction, index) => (
