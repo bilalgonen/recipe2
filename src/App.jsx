@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className='pt-0 pb-12 px-1 bg-stone-100'>
+      <main className='pt-0 pb-12 px-1'>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='home' element={<Home />} />

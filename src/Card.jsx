@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Card({ item }) {
+export default function Card({ item, colorMap }) {
   return (
     <div className='flex flex-col overflow-hidden w-[300px] mx-auto bg-white rounded-lg text-gray-800 border-black'>
       <Link to={`/recipe/${item.id}`}>
@@ -18,7 +18,12 @@ export default function Card({ item }) {
           {item.tags.map((tag, index) => (
             <span
               key={index}
-              className='text-xs border rounded-sm px-1 text-white bg-gray-700'
+              className='text-xs border rounded-sm px-1 text-white'
+              style={{
+                backgroundColor: colorMap.has(tag)
+                  ? colorMap.get(tag)
+                  : 'black',
+              }}
             >
               {tag}
             </span>
