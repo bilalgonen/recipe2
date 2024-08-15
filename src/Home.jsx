@@ -99,7 +99,7 @@ function Home() {
               placeholder='recipe title...'
             />
           </label>
-          <input type='submit' value='Search' />
+          <input type='submit' value='Search' className='cursor-pointer' />
         </form>
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 py-12'>

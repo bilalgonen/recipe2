@@ -18,7 +18,7 @@ export default function Card({ item, colorMap }) {
           {item.tags.map((tag, index) => (
             <span
               key={index}
-              className='text-xs border rounded-sm px-1 text-white whitespace-nowrap'
+              className='text-xs border rounded-md px-1 text-white whitespace-nowrap'
               style={{
                 backgroundColor: colorMap.has(tag)
                   ? colorMap.get(tag)
