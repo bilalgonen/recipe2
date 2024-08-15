@@ -3,6 +3,7 @@ import { Header } from './Header'
 import Home from './Home'
 import RecipePage from './RecipePage'
 import InfiniteScrollExample3 from './InfiniteScrollExample3'
+import T1 from './t1'
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='home' element={<Home />} />
           <Route path='recipe/:id' element={<RecipePage />} />
-          <Route path='/2' element={<InfiniteScrollExample3 />} />
+          <Route path='/1' element={<T1 />} />
         </Routes>
       </main>
     </>

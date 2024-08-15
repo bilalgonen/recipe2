@@ -15,7 +15,7 @@ const Pagination = ({
   }
 
   return (
-    <div className='flex flex-row gap-1 mx-auto  justify-center'>
+    <div className='flex flex-row gap-1 mx-auto  justify-center my-4'>
       {pages.map((page, index) => {
         return (
           <button
