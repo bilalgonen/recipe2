@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom'
 import { Header } from './Header'
 import Home from './Home'
 import RecipePage from './RecipePage'
-import T1 from './T1'
 
 function App() {
   return (
