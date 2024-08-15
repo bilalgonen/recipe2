@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function Card({ item, colorMap }) {
   return (
-    <div className='flex flex-col overflow-hidden w-[300px] mx-auto bg-white rounded-lg text-gray-800 border-black'>
+    <div className='flex flex-col overflow-hidden w-[320px] mx-auto bg-white rounded-lg text-gray-800 border-black'>
       <Link to={`/recipe/${item.id}`}>
         <img
           src={item.image}
