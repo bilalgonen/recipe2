@@ -18,10 +18,10 @@ function Home() {
   const fetchItems = async () => {
     // const searchPar = searchParams.get('search') || ''
     // console.log('searchParams:', searchParams)
-    console.log('fetchItems q:', q)
-    if (q !== '') {
-      console.log('fetchItems q is :', q)
-    }
+    // console.log('fetchItems q:', q)
+    // if (q !== '') {
+    //   console.log('fetchItems q is :', q)
+    // }
     // setSearchParams((searchParams) => {
     //   searchParams.set('page', currentPage)
     //   return searchParams
@@ -40,7 +40,7 @@ function Home() {
         (currentPage - 1) * postsPerPage
       }`
     }
-    console.log('url:', url)
+    // console.log('url:', url)
     const response = await fetch(url)
     const data = await response.json()
     // console.log('fetchItems data:', data)
@@ -74,14 +74,14 @@ function Home() {
   }, [])
 
   useEffect(() => {
-    console.log('uE [currentPage], currPage:', currentPage)
+    // console.log('uE [currentPage], currPage:', currentPage)
     fetchItems()
     // buildColorMap()
     // console.log('items:', items)
   }, [currentPage])
 
   useEffect(() => {
-    console.log('uE [searchParams], currPage:', currentPage)
+    // console.log('uE [searchParams], currPage:', currentPage)
 
     fetchItems()
     // console.log('items:', items)
@@ -89,9 +89,9 @@ function Home() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log(searchTextRef.current.value)
+    // console.log(searchTextRef.current.value)
     setQ(searchTextRef.current.value)
-    console.log('handleSubmit: ', q)
+    // console.log('handleSubmit: ', q)
     setSearchParams({ q: searchTextRef.current.value })
     // navigate(`/?search=${encodeURIComponent(searchPar)}`)
     // navigate(`/?search=${searchTextRef.current.value}`)
@@ -118,7 +118,7 @@ function Home() {
           className='flex flex-col sm:flex-row gap-2'
         >
           <label>
-            Search in Recipe Margherita :
+            Search in Recipe Title :
             <input
               type='text'
               ref={searchTextRef}
@@ -128,17 +128,18 @@ function Home() {
           <input type='submit' value='Search' />
         </form>
       </div>
+
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 py-12'>
+        {items.map((item) => (
+          <Card key={item.id} item={item} colorMap={colorMap} />
+        ))}
+      </div>
       <Pagination
         totalPosts={totalPosts}
         postsPerPage={postsPerPage}
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
       />
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 py-12'>
-        {items.map((item) => (
-          <Card key={item.id} item={item} colorMap={colorMap} />
-        ))}
-      </div>
     </main>
   )
 }
