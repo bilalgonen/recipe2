@@ -1,7 +1,11 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useCacheContext } from './context/cache-context'
 
 export const Header = () => {
+  // const { get, put, lruCache } = useLRUCache(3)
+  const { theme, setTheme } = useCacheContext()
+  console.log('theme:', theme)
+
   return (
     <header className='sticky top-0 z-30 m-0 bg-sky-900'>
       <nav className='relative flex items-center justify-between px-1 md:px-8 py-2 mx-auto max-w-full lg:max-w-screen-xl'>
@@ -17,6 +21,16 @@ export const Header = () => {
             </span>
           </div>
         </Link>
+        <button
+          className='p-1 rounded-md '
+          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+        >
+          {theme === 'light' ? (
+            <p className='text-white'>Dark Mode</p>
+          ) : (
+            <p className='text-white'>Light Mode</p>
+          )}
+        </button>
         <a
           className='text-white'
           href='https://github.com/bilalgonen/recipe2'

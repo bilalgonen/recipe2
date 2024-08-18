@@ -15,7 +15,7 @@ function Home() {
   const BASE_URL = 'https://dummyjson.com/recipes'
   const navigate = useNavigate()
   const [q, setQ] = useState(searchParams.get('q') || '')
-  const { get, put } = useLRUCache(3)
+  const { get, put, lruCache } = useLRUCache(3)
 
   const fetchItems = async () => {
     let url = ''

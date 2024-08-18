@@ -85,16 +85,34 @@ class LRUCache {
   }
 }
 
-import { useRef } from 'react'
+import React, { useContext, createContext, useRef } from 'react'
+export const LruContext = createContext()
 
-const useLRUCache = (capacity) => {
-  const cacheRef = useRef(new LRUCache(capacity))
+export default function LruContextProvider({ children }) {
+  const cacheRef = useRef(new LRUCache(3))
   console.log(cacheRef.current)
 
   const get = (key) => cacheRef.current.get(key)
   const put = (key, value) => cacheRef.current.put(key, value)
+  const lruCache = cacheRef.current
 
-  return { get, put }
+  return (
+    <LruContext.Provider
+      value={{
+        get,
+        put,
+        lruCache,
+      }}
+    >
+      {children}
+    </LruContext.Provider>
+  )
 }
 
-export default useLRUCache
+export function useLruContext() {
+  const context = useContext(LruContext)
+  if (!context) {
+    throw new Error('useLruContext must be used within a LruContextProvider')
+  }
+  return context
+}
