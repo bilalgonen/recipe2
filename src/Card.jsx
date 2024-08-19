@@ -1,10 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import useBuildColorMap from './hooks/useBuildColorMap'
 
-export default function Card({ item, get, put }) {
-  const colorMap = useBuildColorMap()
+export default function Card({ item, get, put, colorMap }) {
   const navigate = useNavigate()
 
   const handleClick = (id) => {

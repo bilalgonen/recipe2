@@ -4,8 +4,10 @@ import Pagination from './Pagination'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import useLRUCache from './Cache'
 import HomeHeader from './components/HomeHeader'
+import useBuildColorMap from './hooks/useBuildColorMap'
 
 function Home() {
+  const colorMap = useBuildColorMap()
   const [items, setItems] = useState([])
   const [searchParams, setSearchParams] = useSearchParams()
   const [currentPage, setCurrentPage] = useState(searchParams.get('page') || 1)
@@ -86,7 +88,13 @@ function Home() {
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 py-12'>
         {items.map((item) => (
-          <Card key={item.id} item={item} get={get} put={put} />
+          <Card
+            key={item.id}
+            item={item}
+            colorMap={colorMap}
+            get={get}
+            put={put}
+          />
         ))}
       </div>
       <Pagination
