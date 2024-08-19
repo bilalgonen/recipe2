@@ -20,12 +20,12 @@ export default function Card({ item, get, put, colorMap }) {
       </p>
       <button
         onClick={() => handleClick(item.id)}
-        className='bg-red-600 text-white p-1 m-2 w-fit rounded-lg hover:bg-red-700'
+        className='bg-red-600 text-white p-1 m-1 w-fit rounded-lg hover:bg-red-700'
       >
         click for details
       </button>
       <div className='flex flex-col justify-between p-1 gap-y-0'>
-        <div className='flex flex-row items-left gap-1 list-disc list-inside flex-wrap'>
+        <div className='flex flex-row items-left py-6 gap-1 list-disc list-inside flex-wrap'>
           {item.tags.map((tag, index) => (
             <span
               key={index}
@@ -41,9 +41,7 @@ export default function Card({ item, get, put, colorMap }) {
           ))}
         </div>
 
-        <div className='text-red-900 font-semibold text-sm pt-4'>
-          Instructions
-        </div>
+        <div className='text-red-900 font-semibold text-sm'>Instructions</div>
         <ul className='flex flex-col items-left gap-1 list-disc list-inside'>
           {item.instructions.map((instruction, index) => (
             <li key={index} className='text-xs'>
