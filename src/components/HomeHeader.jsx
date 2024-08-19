@@ -14,9 +14,8 @@ export default function HomeHeader() {
           by Bilal Gonen
         </a>
       </div>
-      <div className='flex-none border border-gray-800 w-full sm:w-[240px] lg:w-[340px] h-fit p-1 gap-2'>
-        <LruList />
-      </div>
+
+      <LruList />
     </div>
   )
 }

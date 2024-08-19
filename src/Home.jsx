@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import Card from './Card'
 import Pagination from './Pagination'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import useLRUCache from './Cache'
 import HomeHeader from './components/HomeHeader'
 import useBuildColorMap from './hooks/useBuildColorMap'
 
@@ -17,7 +16,7 @@ function Home() {
   const BASE_URL = 'https://dummyjson.com/recipes'
   const navigate = useNavigate()
   const [q, setQ] = useState(searchParams.get('q') || '')
-  const { get, put, lruCache } = useLRUCache(3)
+  // const { get, put, lruCache } = useLRUCache(3)
 
   const fetchItems = async () => {
     let url = ''
@@ -69,7 +68,7 @@ function Home() {
 
   return (
     <main className='container mx-auto px-1 py-4'>
-      <HomeHeader />
+      {/* <HomeHeader /> */}
       <div>
         <form
           onSubmit={handleSubmit}
@@ -88,13 +87,7 @@ function Home() {
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 py-12'>
         {items.map((item) => (
-          <Card
-            key={item.id}
-            item={item}
-            colorMap={colorMap}
-            get={get}
-            put={put}
-          />
+          <Card key={item.id} item={item} colorMap={colorMap} />
         ))}
       </div>
       <Pagination

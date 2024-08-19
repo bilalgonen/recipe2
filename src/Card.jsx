@@ -1,13 +1,20 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useCacheContext } from './context/cache-context'
 
-export default function Card({ item, get, put, colorMap }) {
+export default function Card({ item, colorMap }) {
+  // const { cache, put } = useCacheContext()
   const navigate = useNavigate()
 
-  const handleClick = (id) => {
-    put(id, item)
-    navigate(`/recipe/${id}`)
-  }
+  // const handleClick = (item) => {
+  //   // setCache((cache) => {
+  //   //   const newCache = cache.filter((item) => item.id !== id)
+  //   //   newCache.unshift(item)
+  //   //   return newCache
+  //   // })
+  //   put(item)
+  //   navigate(`/recipe/${item.id}`)
+  // }
 
   return (
     <div className='flex flex-col overflow-hidden w-[320px] mx-auto bg-white rounded-lg text-gray-800 border-black'>
@@ -18,12 +25,8 @@ export default function Card({ item, get, put, colorMap }) {
       <p className='text-lg py-3 font-merriweather1 hover:text-red-600 transition duration-300 '>
         {item.name}
       </p>
-      <button
-        onClick={() => handleClick(item.id)}
-        className='bg-red-600 text-white p-1 m-1 w-fit rounded-lg hover:bg-red-700'
-      >
-        click for details
-      </button>
+      <Link to={`/recipe/${item.id}`}>Click for details</Link>
+
       <div className='flex flex-col justify-between p-1 gap-y-0'>
         <div className='flex flex-row items-left py-6 gap-1 list-disc list-inside flex-wrap'>
           {item.tags.map((tag, index) => (

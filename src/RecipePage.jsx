@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useCacheContext } from './context/cache-context'
 
 export default function RecipePage() {
+  const { put } = useCacheContext()
+
   const { id } = useParams()
   const [item, setItem] = useState()
 
   const getRecipe = async (id) => {
+    console.log('getRecipe id:', id)
     const response = await fetch(`https://dummyjson.com/recipes/${id}`)
     const data = await response.json()
     setItem(data)
-    console.log(data)
+    if (data) put(item)
+    console.log('getRecipe data:', data)
   }
 
   useEffect(() => {
