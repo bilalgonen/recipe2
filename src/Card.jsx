@@ -17,18 +17,19 @@ export default function Card({ item, colorMap }) {
   // }
 
   return (
-    <div className='flex flex-col overflow-hidden w-[320px] mx-auto bg-white rounded-lg text-gray-800 border-black'>
-      <img
-        src={item.image}
-        className='object-cover object-center w-full h-[240px] dark:bg-gray-500 transition duration-300 hover:scale-105 ease-in-out rounded-lg'
-      />
-      <p className='text-lg py-3 font-merriweather1 hover:text-red-600 transition duration-300 '>
-        {item.name}
-      </p>
-      <Link to={`/recipe/${item.id}`}>Click for details</Link>
+    <div className='flex flex-col overflow-hidden max-w-[360px] mx-auto bg-white rounded-lg text-gray-800 border-black'>
+      <Link to={`/recipe/${item.id}`}>
+        <img
+          src={item.image}
+          className='object-cover object-center w-full h-[240px] dark:bg-gray-500 transition duration-300 hover:scale-105 ease-in-out rounded-lg'
+        />
+        <h1 className='text-xl py-2 font-merriweather1 hover:text-red-600 transition duration-300 my-0'>
+          {item.name}
+        </h1>
+      </Link>
 
       <div className='flex flex-col justify-between p-1 gap-y-0'>
-        <div className='flex flex-row items-left py-6 gap-1 list-disc list-inside flex-wrap'>
+        <div className='flex flex-row items-left py-3 gap-1 list-disc list-inside flex-wrap'>
           {item.tags.map((tag, index) => (
             <span
               key={index}

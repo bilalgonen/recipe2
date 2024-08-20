@@ -72,7 +72,7 @@ function Home() {
       <div>
         <form
           onSubmit={handleSubmit}
-          className='flex flex-col sm:flex-row gap-2 px-1 lg:px-10'
+          className='flex flex-row gap-2 px-1 lg:px-10'
         >
           <label>
             Search in Recipe Title:
@@ -85,7 +85,7 @@ function Home() {
           <input type='submit' value='Search' className='cursor-pointer' />
         </form>
       </div>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 py-12'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-6  py-12   px-1 sm:px-4'>
         {items.map((item) => (
           <Card key={item.id} item={item} colorMap={colorMap} />
         ))}

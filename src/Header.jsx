@@ -29,11 +29,11 @@ export const Header = () => {
           </div>
 
           <a
-            className='text-white'
+            className='text-white text-sm sm:text-base'
             href='https://github.com/bilalgonen/recipe2'
             target='_blank'
           >
-            Go to Github Repo
+            Github Repo
           </a>
         </div>
         <LruList />
