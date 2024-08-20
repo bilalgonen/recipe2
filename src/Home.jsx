@@ -2,60 +2,61 @@ import { useEffect, useRef, useState } from 'react'
 import Card from './Card'
 import Pagination from './Pagination'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import HomeHeader from './components/HomeHeader'
 import useBuildColorMap from './hooks/useBuildColorMap'
+import useFetch from './hooks/useFetch'
 
 function Home() {
   const colorMap = useBuildColorMap()
-  const [items, setItems] = useState([])
+  // const [items, setItems] = useState([])
   const [searchParams, setSearchParams] = useSearchParams()
   const [currentPage, setCurrentPage] = useState(searchParams.get('page') || 1)
   const [postsPerPage, setPostsPerPage] = useState(6)
   const [totalPosts, setTotalPosts] = useState(0)
   const searchTextRef = useRef()
   const BASE_URL = 'https://dummyjson.com/recipes'
-  const navigate = useNavigate()
   const [q, setQ] = useState(searchParams.get('q') || '')
-  // const { get, put, lruCache } = useLRUCache(3)
+  // const { items, loading, Error } = useFetch(BASE_URL)
+  // const { data, isLoading, error } = useFetch('https://dummyjson.com/recipes')
+  // console.log('Home data:', data)
 
-  const fetchItems = async () => {
-    let url = ''
-    if (q !== '') {
-      url = `${BASE_URL}/search?q=${q}&limit=${postsPerPage}&skip=${
-        (currentPage - 1) * postsPerPage
-      }`
-    } else {
-      url = `${BASE_URL}?limit=${postsPerPage}&skip=${
-        (currentPage - 1) * postsPerPage
-      }`
-    }
-    // console.log('url:', url)
-    const response = await fetch(url)
-    const data = await response.json()
-    setTotalPosts(data.total)
-    setItems(data.recipes)
-    // console.log('fetchItems items:', items)
-  }
+  // const fetchItems = async () => {
+  //   let url = ''
+  //   if (q !== '') {
+  //     url = `${BASE_URL}/search?q=${q}&limit=${postsPerPage}&skip=${
+  //       (currentPage - 1) * postsPerPage
+  //     }`
+  //   } else {
+  //     url = `${BASE_URL}?limit=${postsPerPage}&skip=${
+  //       (currentPage - 1) * postsPerPage
+  //     }`
+  //   }
+  //   // console.log('url:', url)
+  //   const response = await fetch(url)
+  //   const data = await response.json()
+  //   setTotalPosts(data.total)
+  //   setItems(data.recipes)
+  //   // console.log('fetchItems items:', items)
+  // }
 
-  useEffect(() => {
-    setSearchParams((searchParams) => {
-      searchParams.set('page', currentPage)
-      return searchParams
-    })
-  }, [])
+  // useEffect(() => {
+  //   setSearchParams((searchParams) => {
+  //     searchParams.set('page', currentPage)
+  //     return searchParams
+  //   })
+  // }, [])
 
-  useEffect(() => {
-    // console.log('uE [currentPage], currPage:', currentPage)
-    setSearchParams((searchParams) => {
-      searchParams.set('page', currentPage)
-      return searchParams
-    })
-    fetchItems()
-  }, [currentPage])
+  // useEffect(() => {
+  //   // console.log('uE [currentPage], currPage:', currentPage)
+  //   setSearchParams((searchParams) => {
+  //     searchParams.set('page', currentPage)
+  //     return searchParams
+  //   })
+  //   fetchItems()
+  // }, [currentPage])
 
-  useEffect(() => {
-    fetchItems()
-  }, [searchParams])
+  // useEffect(() => {
+  //   fetchItems()
+  // }, [searchParams])
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -85,11 +86,11 @@ function Home() {
           <input type='submit' value='Search' className='cursor-pointer' />
         </form>
       </div>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-6  py-12   px-1 sm:px-4'>
-        {items.map((item) => (
+      {/* <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-6  py-12   px-1 sm:px-4'>
+        {items.recipes.map((item) => (
           <Card key={item.id} item={item} colorMap={colorMap} />
         ))}
-      </div>
+      </div> */}
       <Pagination
         totalPosts={totalPosts}
         postsPerPage={postsPerPage}
