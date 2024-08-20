@@ -12,20 +12,20 @@ class Node {
 export class LRUCache {
   constructor(capacity) {
     this.capacity = capacity // The maximum number of items in the cache
-    this.map = new Map() // The hash map to store the key-value pairs
+    this.map = new Map() // The hash map to store the id-name pairs
     this.head = null // The head of the doubly linked list
     this.tail = null // The tail of the doubly linked list
   }
 
-  // Get the value of a key from the cache
-  get(key) {
-    // If the key is not in the map, return -1
-    if (!this.map.has(key)) {
+  // Get the name of a id from the cache
+  get(id) {
+    // If the id is not in the map, return -1
+    if (!this.map.has(id)) {
       return -1
     }
 
     // Get the node from the map
-    let node = this.map.get(key)
+    let node = this.map.get(id)
 
     // If the node is not the head, move it to the front of the list
     if (node !== this.head) {
@@ -33,31 +33,31 @@ export class LRUCache {
       this.addNode(node) // Add the node to the front of the list
     }
 
-    // Return the value of the node
-    return node.value
+    // Return the name of the node
+    return node.name
   }
 
-  // Put a key-value pair into the cache
-  put(key, value) {
-    // If the key is already in the map, update its value and move it to the front of the list
-    if (this.map.has(key)) {
-      let node = this.map.get(key)
-      node.value = value
+  // Put a id-name pair into the cache
+  put(id, name) {
+    // If the id is already in the map, update its name and move it to the front of the list
+    if (this.map.has(id)) {
+      let node = this.map.get(id)
+      node.name = name
       if (node !== this.head) {
         this.removeNode(node) // Remove the node from its current position
         this.addNode(node) // Add the node to the front of the list
       }
     } else {
-      // If the key is not in the map, create a new node and add it to the front of the list
-      let node = new Node(key, value)
-      this.map.set(key, node) // Add the key-value pair to the map
+      // If the id is not in the map, create a new node and add it to the front of the list
+      let node = new Node(id, name)
+      this.map.set(id, node) // Add the id-name pair to the map
       this.addNode(node) // Add the node to the front of the list
 
       // If the cache is full, remove the least recently used item from the tail of the list and delete it from the map
       if (this.map.size > this.capacity) {
         let tail = this.tail
         this.removeNode(tail) // Remove the tail node from the list
-        this.map.delete(tail.key) // Delete the key-value pair from the map
+        this.map.delete(tail.id) // Delete the id-name pair from the map
       }
     }
   }

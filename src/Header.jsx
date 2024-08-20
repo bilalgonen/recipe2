@@ -3,7 +3,7 @@ import LruList from './components/LruList'
 
 export const Header = () => {
   return (
-    <header className='sticky top-0 z-30 m-0 bg-sky-900 h-[80px]'>
+    <header className='sticky top-0 z-30 m-0 bg-sky-900 h-[100px]'>
       <nav className='relative flex flex-col sm:flex-row items-center justify-between px-1 md:px-8 py-2 mx-auto max-w-full lg:max-w-screen-xl'>
         <Link
           to='/'
@@ -21,13 +21,12 @@ export const Header = () => {
           <a
             href='https://bilalgonen.com/'
             target='_blank'
-            className='text-sm italic text-gray-200 px-2'
+            className='text-sm italic text-gray-50 px-2'
           >
             by Bilal Gonen
           </a>
         </div>
 
-        <LruList />
         <a
           className='text-white'
           href='https://github.com/bilalgonen/recipe2'
@@ -35,6 +34,7 @@ export const Header = () => {
         >
           Go to Github Repo
         </a>
+        <LruList />
       </nav>
     </header>
   )

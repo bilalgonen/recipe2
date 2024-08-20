@@ -6,21 +6,23 @@ export const CacheContext = createContext()
 export default function CacheContextProvider({ children }) {
   const lru = new LRUCache(3)
 
-  const [cache, setCache] = useState([
-    // { id: 1, name: 'Mango Salsa Chicken' },
-    // { id: 2, name: 'Chicken Alfredo Pasta' },
-    // { id: 3, name: 'Vegetarian Stir-Fry' },
-  ])
+  const [cache, setCache] = useState([])
+  // { id: 1, name: 'Mango Salsa Chicken' },
+  // { id: 2, name: 'Chicken Alfredo Pasta' },
+  // { id: 3, name: 'Vegetarian Stir-Fry' },
+  //   ])
 
-  const put = (item) => {
-    console.log('in put:', item)
-    lru.put(item.id, item.name)
+  const put = (id, name) => {
+    // console.log('in put, id-name:', id, name)
+    lru.put(id, name)
     setCache(Array.from(lru.map, ([id, name]) => ({ id, name })))
+    // console.log('in put:', cache)
   }
 
-  useEffect(() => {
-    console.log('in CacheContextProvider:', cache)
-  }, [cache])
+  //   useEffect(() => {
+  // console.log('in CacheContextProvider:', cache)
+  // setCache(Array.from(lru.map, ([id, name]) => ({ id, name })))
+  //   }, [])
 
   //   lru.put(2, 'Chicken Alfredo Pasta')
   //   const lruArray = Array.from(lru.map.keys()).map((key) => lru.map.get(key))

@@ -6,20 +6,29 @@ export default function RecipePage() {
   const { put } = useCacheContext()
 
   const { id } = useParams()
-  const [item, setItem] = useState()
-
-  const getRecipe = async (id) => {
-    console.log('getRecipe id:', id)
-    const response = await fetch(`https://dummyjson.com/recipes/${id}`)
-    const data = await response.json()
-    setItem(data)
-    if (data) put(item)
-    console.log('getRecipe data:', data)
-  }
+  const [item, setItem] = useState(null)
 
   useEffect(() => {
+    const getRecipe = async (id) => {
+      // console.log('getRecipe id:', id)
+      const response = await fetch(`https://dummyjson.com/recipes/${id}`)
+      const data = await response.json()
+      // console.log('1- getRecipe data:', data)
+      setItem(data)
+      // console.log('2- getRecipe item:', item)
+      // console.log('2- getRecipe data:', data)
+    }
+    // console.log('RecipePage useEffect [id]:', id)
     getRecipe(id)
   }, [id])
+
+  useEffect(() => {
+    // if (!item) return
+    // console.log('RecipePage useEffect [item]:', item)
+    if (item) {
+      put(item.id, item.name)
+    }
+  }, [item])
 
   return (
     <>
