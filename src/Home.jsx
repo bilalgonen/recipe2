@@ -67,7 +67,7 @@ function Home() {
   }
 
   return (
-    <main className='max-w-screen-xl mx-auto px-1 py-4'>
+    <>
       {/* <HomeHeader /> */}
       <div>
         <form
@@ -96,7 +96,7 @@ function Home() {
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
       />
-    </main>
+    </>
   )
 }
 export default Home

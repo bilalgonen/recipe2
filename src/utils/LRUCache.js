@@ -45,7 +45,7 @@ class LRUCache {
 
   // Put a id-name pair into the cache
   put(id, name) {
-    console.log('this.map:', this.map)
+    // console.log('this.map:', this.map)
     // If the id is already in the map, update its name and move it to the front of the list
     if (this.map.has(id)) {
       let node = this.map.get(id)
@@ -59,7 +59,7 @@ class LRUCache {
       let node = new Node(id, name)
       this.map.set(id, node) // Add the id-name pair to the map
       this.addNode(node) // Add the node to the front of the list
-      console.log('this.map:', this.map)
+      // console.log('this.map:', this.map)
 
       // If the cache is full, remove the least recently used item from the tail of the list and delete it from the map
       if (this.map.size > this.capacity) {

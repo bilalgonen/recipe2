@@ -36,6 +36,14 @@ export default function RecipePage() {
         <p>Loading...</p>
       ) : (
         <section>
+          <div>
+            <button
+              className='text-red-600 font-semibold transition duration-300 border border-red-600 hover:bg-red-600 hover:text-white rounded-md px-2 py-1'
+              onClick={() => window.history.back()}
+            >
+              Back to recipes
+            </button>
+          </div>
           <h1 className='text-4xl py-3 font-merriweather1 hover:text-red-600 transition duration-300 '>
             {item.name}
           </h1>

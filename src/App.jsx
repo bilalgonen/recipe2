@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className='pt-0 pb-12 px-1'>
+      <main className='max-w-screen-xl mx-auto px-1 py-4'>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='home' element={<Home />} />
