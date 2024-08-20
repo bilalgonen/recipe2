@@ -8,13 +8,19 @@ class Node {
   }
 }
 
+let instance
+
 // Define a LRU cache class
-export class LRUCache {
+class LRUCache {
   constructor(capacity) {
     this.capacity = capacity // The maximum number of items in the cache
     this.map = new Map() // The hash map to store the id-name pairs
     this.head = null // The head of the doubly linked list
     this.tail = null // The tail of the doubly linked list
+    if (instance) {
+      throw new Error('You can only create one instance!')
+    }
+    instance = this
   }
 
   // Get the name of a id from the cache
@@ -39,6 +45,7 @@ export class LRUCache {
 
   // Put a id-name pair into the cache
   put(id, name) {
+    console.log('this.map:', this.map)
     // If the id is already in the map, update its name and move it to the front of the list
     if (this.map.has(id)) {
       let node = this.map.get(id)
@@ -52,6 +59,7 @@ export class LRUCache {
       let node = new Node(id, name)
       this.map.set(id, node) // Add the id-name pair to the map
       this.addNode(node) // Add the node to the front of the list
+      console.log('this.map:', this.map)
 
       // If the cache is full, remove the least recently used item from the tail of the list and delete it from the map
       if (this.map.size > this.capacity) {
@@ -99,6 +107,10 @@ export class LRUCache {
     }
   }
 }
+
+// const LRU = Object.freeze(new LRUCache())
+const LRU = new LRUCache(3)
+export default LRU
 
 // LRU cache with capacity 3
 //   const lru = new LRUCache(3)

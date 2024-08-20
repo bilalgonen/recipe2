@@ -67,12 +67,12 @@ function Home() {
   }
 
   return (
-    <main className='container mx-auto px-1 py-4'>
+    <main className='max-w-screen-xl mx-auto px-1 py-4'>
       {/* <HomeHeader /> */}
       <div>
         <form
           onSubmit={handleSubmit}
-          className='flex flex-col sm:flex-row gap-2'
+          className='flex flex-col sm:flex-row gap-2 px-1 lg:px-10'
         >
           <label>
             Search in Recipe Title:

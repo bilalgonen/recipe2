@@ -4,7 +4,7 @@ import LruList from './components/LruList'
 export const Header = () => {
   return (
     <header className='sticky top-0 z-30 m-0 bg-sky-900 h-[100px]'>
-      <nav className='relative flex flex-col sm:flex-row items-center justify-between px-1 md:px-8 py-2 mx-auto max-w-full lg:max-w-screen-xl'>
+      <nav className='relative flex flex-col sm:flex-row items-center justify-between px-1 md:px-8 py-1 mx-auto max-w-full lg:max-w-screen-xl'>
         <Link
           to='/'
           aria-label='Brand'

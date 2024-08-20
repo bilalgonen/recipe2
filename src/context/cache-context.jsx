@@ -1,10 +1,10 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { LRUCache } from '../utils/LRUCache'
+import LRU from '../utils/LRUCache'
 
 export const CacheContext = createContext()
 
 export default function CacheContextProvider({ children }) {
-  const lru = new LRUCache(3)
+  //   const lru = new LRUCache(3)
 
   const [cache, setCache] = useState([])
   // { id: 1, name: 'Mango Salsa Chicken' },
@@ -14,8 +14,8 @@ export default function CacheContextProvider({ children }) {
 
   const put = (id, name) => {
     // console.log('in put, id-name:', id, name)
-    lru.put(id, name)
-    setCache(Array.from(lru.map, ([id, name]) => ({ id, name })))
+    LRU.put(id, name)
+    setCache(Array.from(LRU.map, ([id, name]) => ({ id, name })))
     // console.log('in put:', cache)
   }
 
