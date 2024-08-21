@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import Pagination from './Pagination'
 
-export default function Home2() {
+export default function Home() {
   const [url, setUrl] = useState('https://dummyjson.com/recipes?page=1')
   const [searchParams, setSearchParams] = useSearchParams()
   const [currentPage, setCurrentPage] = useState(searchParams.get('page') || 1)

@@ -1,28 +1,16 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useCacheContext } from './context/cache-context'
+import { Link } from 'react-router-dom'
 
 export default function Card({ item, colorMap }) {
-  // const { cache, put } = useCacheContext()
-  const navigate = useNavigate()
-
-  // const handleClick = (item) => {
-  //   // setCache((cache) => {
-  //   //   const newCache = cache.filter((item) => item.id !== id)
-  //   //   newCache.unshift(item)
-  //   //   return newCache
-  //   // })
-  //   put(item)
-  //   navigate(`/recipe/${item.id}`)
-  // }
-
   return (
     <div className='flex flex-col overflow-hidden max-w-[360px] mx-auto bg-white rounded-lg text-gray-800 border-black'>
       <Link to={`/recipe/${item.id}`}>
-        <img
-          src={item.image}
-          className='object-cover object-center w-full h-[240px] dark:bg-gray-500 transition duration-300 hover:scale-105 ease-in-out rounded-lg'
-        />
+        <div className='overflow-hidden '>
+          <img
+            src={item.image}
+            className='object-cover object-center w-full h-[240px] dark:bg-gray-500 transition duration-300 hover:scale-105 ease-in-out '
+          />
+        </div>
         <h1 className='text-xl py-2 font-merriweather1 hover:text-red-600 transition duration-300 my-0'>
           {item.name}
         </h1>
