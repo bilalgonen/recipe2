@@ -16,6 +16,8 @@ const Pagination = ({
 
   return (
     <div className='flex flex-row gap-1 mx-auto  justify-center my-4'>
+      {totalPosts} posts - {postsPerPage} posts per page - {pages.length} pages
+      - current page: {currentPage}
       {pages.map((page, index) => {
         return (
           <button

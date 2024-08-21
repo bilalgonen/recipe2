@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import useFetch from '../hooks/useFetch'
 import { useSearchParams } from 'react-router-dom'
 
-export default function SearchNameCard() {
+export default function SearchNameCard({ setUrl }) {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const searchTextRef = useRef()
@@ -15,9 +15,9 @@ export default function SearchNameCard() {
     // setQ(searchTextRef.current.value)
     console.log('handleSubmit qvalue: ', qvalue)
     setSearchParams({ q: searchTextRef.current.value })
-    let url = `${BASE_URL}?q=${qvalue}`
-    console.log('url:', url)
-    const { items, loading, Error } = useFetch(url)
+    let url2 = `${BASE_URL}?q=${qvalue}`
+    setUrl(url2)
+    // console.log('url:', url)
 
     // fetchItems()
   }

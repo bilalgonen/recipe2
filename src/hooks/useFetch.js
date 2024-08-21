@@ -1,33 +1,29 @@
 import { useState, useEffect } from 'react'
 
 export default function useFetch(url) {
-  //   console.log('first url:', url)
+  console.log('useFetch url:', url)
   const [items, setItems] = useState(null)
   const [loading, setLoading] = useState(false)
-  const [Error, setError] = useState(false)
+  const [error, setError] = useState(null)
+
   useEffect(() => {
-    setLoading(true)
-    setError(false)
-    const ctrl = new AbortController()
-    fetch(url, { signal: ctrl.signal })
-      .then((response) => {
-        if (!response.ok) throw 'API Failed'
-        return response.json()
-      })
-      .then((json) => {
-        setItems(json)
-        setError(false)
+    async function fetchData() {
+      try {
+        const response = await fetch(url)
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+        const result = await response.json()
+        setItems(result)
+      } catch (err) {
+        setError(err)
+      } finally {
         setLoading(false)
-      })
-      .catch((e) => {
-        console.log(e)
-        setError(true)
-        setItems([])
-        setLoading(false)
-      })
-    return () => {
-      ctrl.abort()
+      }
     }
+
+    fetchData()
   }, [url])
-  return { items, loading, Error }
+
+  return { items, loading, error }
 }
