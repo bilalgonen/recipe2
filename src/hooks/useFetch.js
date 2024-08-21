@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 export default function useFetch(url) {
-  console.log('useFetch url:', url)
+  //   console.log('useFetch url:', url)
   const [items, setItems] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)

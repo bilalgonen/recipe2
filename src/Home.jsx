@@ -1,103 +1,48 @@
-import { useEffect, useRef, useState } from 'react'
-import Card from './Card'
-import Pagination from './Pagination'
-import { useNavigate, useSearchParams } from 'react-router-dom'
-import useBuildColorMap from './hooks/useBuildColorMap'
 import useFetch from './hooks/useFetch'
+import SearchNameCard from './components/SearchNameCard'
+import Recipes from './components/Recipes'
+import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import Pagination from './Pagination'
 
-function Home() {
-  const colorMap = useBuildColorMap()
-  // const [items, setItems] = useState([])
+export default function Home2() {
+  const [url, setUrl] = useState('https://dummyjson.com/recipes?page=1')
   const [searchParams, setSearchParams] = useSearchParams()
   const [currentPage, setCurrentPage] = useState(searchParams.get('page') || 1)
   const [postsPerPage, setPostsPerPage] = useState(6)
-  const [totalPosts, setTotalPosts] = useState(0)
-  const searchTextRef = useRef()
-  const BASE_URL = 'https://dummyjson.com/recipes'
-  const [q, setQ] = useState(searchParams.get('q') || '')
-  // const { items, loading, Error } = useFetch(BASE_URL)
-  // const { data, isLoading, error } = useFetch('https://dummyjson.com/recipes')
-  // console.log('Home data:', data)
+  const { items, loading, Error } = useFetch(url)
 
-  // const fetchItems = async () => {
-  //   let url = ''
-  //   if (q !== '') {
-  //     url = `${BASE_URL}/search?q=${q}&limit=${postsPerPage}&skip=${
-  //       (currentPage - 1) * postsPerPage
-  //     }`
-  //   } else {
-  //     url = `${BASE_URL}?limit=${postsPerPage}&skip=${
-  //       (currentPage - 1) * postsPerPage
-  //     }`
-  //   }
-  //   // console.log('url:', url)
-  //   const response = await fetch(url)
-  //   const data = await response.json()
-  //   setTotalPosts(data.total)
-  //   setItems(data.recipes)
-  //   // console.log('fetchItems items:', items)
-  // }
+  useEffect(() => {
+    setSearchParams((searchParams) => {
+      searchParams.set('page', currentPage)
 
-  // useEffect(() => {
-  //   setSearchParams((searchParams) => {
-  //     searchParams.set('page', currentPage)
-  //     return searchParams
-  //   })
-  // }, [])
-
-  // useEffect(() => {
-  //   // console.log('uE [currentPage], currPage:', currentPage)
-  //   setSearchParams((searchParams) => {
-  //     searchParams.set('page', currentPage)
-  //     return searchParams
-  //   })
-  //   fetchItems()
-  // }, [currentPage])
-
-  // useEffect(() => {
-  //   fetchItems()
-  // }, [searchParams])
-
-  function handleSubmit(e) {
-    e.preventDefault()
-    // console.log(searchTextRef.current.value)
-    setQ(searchTextRef.current.value)
-    // console.log('handleSubmit: ', q)
-    setSearchParams({ q: searchTextRef.current.value })
-    fetchItems()
-  }
+      return searchParams
+    })
+    // console.log('url1:', url)
+    setUrl(
+      `https://dummyjson.com/recipes?limit=${postsPerPage}&skip=${
+        (currentPage - 1) * postsPerPage
+      }`
+    )
+    // console.log('url2:', url)
+  }, [currentPage])
 
   return (
-    <>
-      {/* <HomeHeader /> */}
-      <div>
-        <form
-          onSubmit={handleSubmit}
-          className='flex flex-row gap-2 px-1 lg:px-10'
-        >
-          <label>
-            Search in Recipe Title:
-            <input
-              type='text'
-              ref={searchTextRef}
-              placeholder='recipe title...'
-            />
-          </label>
-          <input type='submit' value='Search' className='cursor-pointer' />
-        </form>
-      </div>
-      {/* <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-6  py-12   px-1 sm:px-4'>
-        {items.recipes.map((item) => (
-          <Card key={item.id} item={item} colorMap={colorMap} />
-        ))}
-      </div> */}
-      <Pagination
-        totalPosts={totalPosts}
-        postsPerPage={postsPerPage}
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-      />
-    </>
+    <div>
+      <SearchNameCard setUrl={setUrl} />
+      {loading && <div>Loading...</div>}
+      {items && (
+        <>
+          <Recipes items={items} />
+          <Pagination
+            totalPosts={items.total}
+            postsPerPage={postsPerPage}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
+        </>
+      )}
+      {Error && <div>Error</div>}
+    </div>
   )
 }
-export default Home
