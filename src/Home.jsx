@@ -26,7 +26,7 @@ export default function Home() {
       searchParams.set('page', currentPage)
       return searchParams
     })
-    console.log('useEff[currPage] searchParams page:', searchParams.get('page'))
+    // console.log('useEff[currPage] searchParams page:', searchParams.get('page'))
     // console.log('url1:', url)
     // setUrl('https://dummyjson.com/recipes')
     setUrl(
