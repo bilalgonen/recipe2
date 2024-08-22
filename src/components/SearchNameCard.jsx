@@ -1,44 +1,34 @@
-import React, { useRef } from 'react'
-import useFetch from '../hooks/useFetch'
-import { useSearchParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useRecipeFilters } from '../hooks/useRecipeFilters'
+import { useDebounce } from '../hooks/useDebounce'
 
-export default function SearchNameCard({ setUrl }) {
-  const [searchParams, setSearchParams] = useSearchParams()
+export default function SearchNameCard() {
+  const { q, page, setFilters } = useRecipeFilters()
 
-  const searchTextRef = useRef()
-  const BASE_URL = 'https://dummyjson.com/recipes/search'
+  const [localQ, setLocalQ] = useState(q)
+  const debouncedQ = useDebounce(localQ)
 
-  function handleSubmit(e) {
-    e.preventDefault()
-    const qvalue = searchTextRef.current.value
-    // console.log(searchTextRef.current.value)
-    // setQ(searchTextRef.current.value)
-    console.log('handleSubmit qvalue: ', qvalue)
-    setSearchParams({ q: searchTextRef.current.value })
-    let url2 = `${BASE_URL}?q=${qvalue}`
-    setUrl(url2)
-    // console.log('url:', url)
-
-    // fetchItems()
-  }
+  useEffect(() => {
+    setFilters({ q: debouncedQ })
+  }, [debouncedQ])
 
   return (
-    <div>
-      {' '}
-      <form
-        onSubmit={handleSubmit}
-        className='flex flex-row gap-2 px-1 lg:px-10'
+    <div className='flex flex-row gap-2 px-1 md:px-8'>
+      <input
+        type='text'
+        value={localQ}
+        onChange={(e) => setLocalQ(e.target.value)}
+        placeholder='Search recipes...'
+      />
+      <button
+        className='btn '
+        onClick={() => {
+          setLocalQ('')
+          setFilters({ q: '' })
+        }}
       >
-        <label>
-          Search in Recipe Title:
-          <input
-            type='text'
-            ref={searchTextRef}
-            placeholder='recipe title...'
-          />
-        </label>
-        <input type='submit' value='Search' className='cursor-pointer' />
-      </form>
+        Clear
+      </button>
     </div>
   )
 }

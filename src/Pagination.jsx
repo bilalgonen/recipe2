@@ -1,13 +1,9 @@
 import React from 'react'
+import { useRecipeFilters } from './hooks/useRecipeFilters'
 
-// import "./Pagination.css";
+const Pagination = ({ totalPosts, postsPerPage }) => {
+  const { q, page, setFilters } = useRecipeFilters()
 
-const Pagination = ({
-  totalPosts,
-  postsPerPage,
-  setCurrentPage,
-  currentPage,
-}) => {
   let pages = []
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
@@ -16,19 +12,17 @@ const Pagination = ({
 
   return (
     <div className='flex flex-row gap-1 mx-auto  justify-center my-4'>
-      {/* {totalPosts} posts - {postsPerPage} posts per page - {pages.length} pages
-      - current page: {currentPage} */}
-      {pages.map((page, index) => {
+      {pages.map((pg, index) => {
         return (
           <button
             key={index}
-            onClick={() => setCurrentPage(page)}
+            onClick={() => setFilters({ page: pg, q: q })}
             className={`text-blue-600 font-medium border rounded-md size-8 p-1 cursor-pointer hover:bg-opacity-70 disabled:cursor-not-allowed ${
-              page == currentPage ? 'bg-yellow-500' : 'bg-yellow-200'
+              pg == page ? 'bg-yellow-500' : 'bg-yellow-200'
             }`}
-            disabled={page == currentPage}
+            disabled={pg == page}
           >
-            {page}
+            {pg}
           </button>
         )
       })}

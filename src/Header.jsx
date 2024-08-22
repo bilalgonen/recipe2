@@ -6,8 +6,8 @@ export const Header = () => {
     <header className='sticky top-0 z-30 m-0 bg-sky-900 h-[100px]'>
       <nav className='relative flex flex-row items-start justify-between px-2 py-1 mx-auto max-w-full lg:max-w-screen-xl'>
         <div className='flex flex-col sm:flex-row gap-x-4 md:gap-x-12 items-end'>
-          <a
-            href='/'
+          <Link
+            to='/'
             aria-label='Brand'
             title='Brand'
             className='inline-flex items-center'
@@ -17,7 +17,7 @@ export const Header = () => {
                 Recipes App
               </span>
             </div>
-          </a>
+          </Link>
           <div className='text-left'>
             <a
               href='https://bilalgonen.com/'

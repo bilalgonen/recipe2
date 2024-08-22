@@ -7,7 +7,7 @@
     @apply p-0 m-0 box-border text-base;
   }
   html {
-    @apply bg-stone-200;
+    @apply bg-stone-300;
   }
   body {
     @apply font-texts relative;
@@ -41,7 +41,7 @@
     box-shadow: 4px 8px 3px 0.3px rgb(12, 12, 12, 0.4);
   }
   .btn {
-    @apply px-3 py-1 font-medium border-none rounded-full w-fit mx-[4px] cursor-pointer;
+    @apply px-3 py-1 border border-gray-400 rounded-lg bg-yellow-200 w-fit cursor-pointer;
   }
   .btn1 {
     @apply bg-green-600 hover:bg-green-500;

@@ -38,15 +38,13 @@ export default function RecipePage() {
         <section>
           <div>
             <button
-              className='text-red-600 font-semibold transition duration-300 border border-red-600 hover:bg-red-600 hover:text-white rounded-md px-2 py-1'
+              className='text-red-600 bg-stone-50 font-semibold transition duration-300 border border-red-600 hover:bg-red-600 hover:text-white rounded-md px-2 py-1'
               onClick={() => window.history.back()}
             >
               Back to recipes
             </button>
           </div>
-          <h1 className='text-4xl py-3 font-merriweather1 hover:text-red-600 transition duration-300 '>
-            {item.name}
-          </h1>
+          <h1 className='text-4xl py-3'>{item.name}</h1>
           <div className='max-w-screen-xl mx-auto justify-center gap-2 sm:gap-8 py-2 px-1 sm:px-2'>
             <img
               className=' h-96  object-cover rounded-lg mx-auto'
