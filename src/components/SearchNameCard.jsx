@@ -13,12 +13,13 @@ export default function SearchNameCard() {
   }, [debouncedQ])
 
   return (
-    <div className='flex flex-row gap-2 px-1 md:px-8'>
+    <div className='flex flex-row gap-2 pt-8'>
       <input
         type='text'
         value={localQ}
         onChange={(e) => setLocalQ(e.target.value)}
-        placeholder='Search recipes...'
+        placeholder='Search by recipe title...'
+        className='border border-gray-400 rounded-md p-1 w-[240px]'
       />
       <button
         className='btn '

@@ -1,10 +1,9 @@
 import useFetch from './hooks/useFetch'
 import SearchNameCard from './components/SearchNameCard'
 import Recipes from './components/Recipes'
-import { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
 import Pagination from './Pagination'
 import { useRecipeFilters } from './hooks/useRecipeFilters'
+import Tags from './components/Tags'
 
 export default function Home() {
   const { q, page } = useRecipeFilters()
@@ -12,7 +11,8 @@ export default function Home() {
   const { items, loading, Error } = useFetch(q, page, itemsPerPage)
 
   return (
-    <div>
+    <main>
+      <Tags />
       <SearchNameCard />
       {loading && <div>Loading...</div>}
       {items && (
@@ -22,6 +22,6 @@ export default function Home() {
         </>
       )}
       {Error && <div>Error</div>}
-    </div>
+    </main>
   )
 }

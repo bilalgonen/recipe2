@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useTagContext } from './context/tag-context'
 
-export default function Card({ item, colorMap }) {
+export default function Card({ item }) {
+  const { colorMap } = useTagContext()
   return (
-    <div className='flex flex-col overflow-hidden max-w-[360px] mx-auto bg-white rounded-lg text-gray-800 border-black shadow-lg '>
+    <div className='flex flex-col overflow-hidden max-w-[380px] mx-auto bg-white rounded-lg text-gray-800 border-black shadow-lg '>
       <Link to={`/recipe/${item.id}`}>
         <div className='overflow-hidden '>
           <img
