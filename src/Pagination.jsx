@@ -1,8 +1,10 @@
 import React from 'react'
 import { useRecipeFilters } from './hooks/useRecipeFilters'
+import { useFetchRecipes } from './hooks/useFetchRecipes'
 
 const Pagination = ({ totalItems, itemsPerPage }) => {
-  const { q, page, setFilters } = useRecipeFilters()
+  // const { q, page, setFilters } = useRecipeFilters()
+  const { q, page, setFilters } = useFetchRecipes()
 
   let pages = []
 

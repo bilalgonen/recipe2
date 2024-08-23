@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useRecipeFilters } from '../hooks/useRecipeFilters'
 import { useDebounce } from '../hooks/useDebounce'
+import { useFetchRecipes } from '../hooks/useFetchRecipes'
 
 export default function SearchNameCard() {
-  const { q, page, setFilters } = useRecipeFilters()
+  // const { q, page, setFilters } = useRecipeFilters()
+  const { q, setFilters } = useFetchRecipes()
 
   const [localQ, setLocalQ] = useState(q)
   const debouncedQ = useDebounce(localQ)
 
   useEffect(() => {
-    setFilters({ q: debouncedQ })
+    setFilters({ q: debouncedQ, page: 1 })
   }, [debouncedQ])
 
   return (
