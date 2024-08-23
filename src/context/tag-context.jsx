@@ -7,6 +7,15 @@ export default function CacheContextProvider({ children }) {
   const [loading, setLoading] = useState(true)
   const [colorMap, setColorMap] = useState(new Map())
 
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF'
+    var color = '#'
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)]
+    }
+    return color
+  }
+
   useEffect(() => {
     fetch('https://dummyjson.com/recipes/tags')
       .then((response) => response.json())
@@ -15,7 +24,7 @@ export default function CacheContextProvider({ children }) {
         // console.log('data:', data)
         // console.log('tags:', tags)
         const colorArray = data.map(() => {
-          return '#' + Math.floor(Math.random() * 16777215).toString(16)
+          return getRandomColor()
         })
         // console.log('colorArray:', colorArray)
         const newMap = new Map()
