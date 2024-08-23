@@ -8,8 +8,8 @@ import { useRecipeFilters } from './hooks/useRecipeFilters'
 
 export default function Home() {
   const { q, page } = useRecipeFilters()
-  const { items, loading, Error } = useFetch(q, page)
-  const postsPerPage = 3
+  const itemsPerPage = 6
+  const { items, loading, Error } = useFetch(q, page, itemsPerPage)
 
   return (
     <div>
@@ -18,7 +18,7 @@ export default function Home() {
       {items && (
         <>
           <Recipes items={items} />
-          <Pagination totalPosts={items.total} postsPerPage={postsPerPage} />
+          <Pagination totalItems={items.total} itemsPerPage={itemsPerPage} />
         </>
       )}
       {Error && <div>Error</div>}

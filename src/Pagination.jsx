@@ -1,12 +1,12 @@
 import React from 'react'
 import { useRecipeFilters } from './hooks/useRecipeFilters'
 
-const Pagination = ({ totalPosts, postsPerPage }) => {
+const Pagination = ({ totalItems, itemsPerPage }) => {
   const { q, page, setFilters } = useRecipeFilters()
 
   let pages = []
 
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
     pages.push(i)
   }
 
