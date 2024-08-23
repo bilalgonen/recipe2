@@ -41,7 +41,7 @@
     box-shadow: 4px 8px 3px 0.3px rgb(12, 12, 12, 0.4);
   }
   .btn {
-    @apply px-3 py-1 border border-gray-400 rounded-lg bg-yellow-200 w-fit cursor-pointer;
+    @apply px-3 py-1 border border-gray-400 rounded-lg bg-yellow-200 hover:bg-yellow-300 transition w-fit cursor-pointer;
   }
   .btn1 {
     @apply bg-green-600 hover:bg-green-500;
