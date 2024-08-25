@@ -4,7 +4,7 @@ import { useFetchRecipes } from './hooks/useFetchRecipes'
 
 const Pagination = ({ totalItems, itemsPerPage }) => {
   // const { q, page, setFilters } = useRecipeFilters()
-  const { q, page, setFilters } = useFetchRecipes()
+  const { q, page, tag, setFilters } = useFetchRecipes()
 
   let pages = []
 
@@ -18,7 +18,7 @@ const Pagination = ({ totalItems, itemsPerPage }) => {
         return (
           <button
             key={index}
-            onClick={() => setFilters({ page: pg, q: q })}
+            onClick={() => setFilters({ page: pg })}
             className={`text-blue-600 font-medium border rounded-md size-8 p-1 cursor-pointer hover:bg-opacity-70 disabled:cursor-not-allowed ${
               pg == page ? 'bg-yellow-500' : 'bg-yellow-200'
             }`}

@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { useTagContext } from '../context/tag-context'
+import { useFetchRecipes } from '../hooks/useFetchRecipes'
 
 const Tags = () => {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(true)
   const { tags, loading, colorMap } = useTagContext()
+  const { q, setFilters } = useFetchRecipes()
+
   if (loading) return <div>Loading Tags...</div>
 
   //   console.log('tags:', tags)
@@ -22,7 +25,8 @@ const Tags = () => {
       {show && (
         <div className='flex gap-1 flex-wrap py-4'>
           {tags.map((tag, index) => (
-            <span
+            <button
+              onClick={() => setFilters({ page: 1, q: q, tag: tag })}
               key={index}
               className='text-xs border rounded-md px-1 text-white whitespace-nowrap'
               style={{
@@ -32,7 +36,7 @@ const Tags = () => {
               }}
             >
               {tag}
-            </span>
+            </button>
           ))}
         </div>
       )}
