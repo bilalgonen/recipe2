@@ -4,6 +4,7 @@ import Home from './Home'
 import RecipePage from './RecipePage'
 
 function App() {
+  console.log('App rendered')
   return (
     <>
       <Header />
